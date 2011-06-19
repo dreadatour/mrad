@@ -13,7 +13,7 @@ Options:
 -n  Don't fork off as a daemon
 -h  Show this help screen
 Example:
-mrad -u test-box@mail.ru -p 123456 -p 20202
+mrad -u test-box@mail.ru -p 123456 -l 20202
 
 Usage:
 echo -ne "username@mail.ru\nMessage" | nc localhost 20202
