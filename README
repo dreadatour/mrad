@@ -1,0 +1,20 @@
+Mail.Ru Agent Daemon
+
+Install:
+- make
+- sudo make install
+
+Run:
+/usr/local/bin/mrad [options]
+Options:
+-u  Mail.Ru Agent username
+-p  Mail.Ru Agent password
+-l  Port to listen to
+-n  Don't fork off as a daemon
+-h  Show this help screen
+Example:
+mrad -u test-box@mail.ru -p 123456 -p 20202
+
+Usage:
+echo -ne "username@mail.ru\nMessage" | nc localhost 20202
+
