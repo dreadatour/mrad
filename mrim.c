@@ -42,7 +42,8 @@ to_crlf(const char *text)
 	for (p = text; *p; p++) {
 		if(*p == '\n' && *(p - 1) != '\r') n++;
 	}
-	res = (char *) malloc(strlen(text) + n);
+	res = (char *) malloc(strlen(text) + n + 1);
+	memset(res, 0, strlen(text) + n + 1);
 	for (p = text, r = res; *p; p++) {
 		if (*p == '\n' && *(p - 1) != '\r') {
 			*r++ = '\r';
