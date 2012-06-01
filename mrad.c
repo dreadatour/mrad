@@ -26,8 +26,9 @@ signal_handler(int sig)
 {
 	switch(sig) {
 		case SIGALRM:
-			mrim_send_ping();
-			alarm(10);
+			if(mrim_send_ping() != -1){
+				alarm(10);
+			}
 			break;
 		case SIGINT:
 			need_exit = 1;

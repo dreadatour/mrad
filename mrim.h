@@ -46,7 +46,7 @@ int mrim_net_send_auth_request_ack(char *);
 int mrim_send_hello();
 int mrim_send_auth(const char *, const char *, uint32_t);
 int mrim_send_message(const char *, const char *, uint32_t);
-void mrim_send_ping();
+int mrim_send_ping();
 void mrim_read_message(char *, uint32_t);
 int mrim_net_read_proceed();
 int mrim_net_read();

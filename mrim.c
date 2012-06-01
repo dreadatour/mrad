@@ -275,7 +275,7 @@ mrim_send_message(const char *to, const char *message, uint32_t flags)
 /*******************************************************************************
 	Send 'ping' packet
 *******************************************************************************/
-void
+int
 mrim_send_ping()
 {
 	mrim_packet_header_t head;
@@ -284,7 +284,7 @@ mrim_send_ping()
 
 	mrim_net_fill_cs_header(&head, seq++, MRIM_CS_PING, 0);
 	mrim_net_send(&head, sizeof(head));
-	mrim_net_send_flush();
+	return mrim_net_send_flush();
 }
 
 /*******************************************************************************
