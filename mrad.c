@@ -178,7 +178,9 @@ main(int argc, char *argv[])
 
 		// read data from MRIM if needed
 		if (mrim_is_readable(0, 100)) {
-			mrim_net_read();
+			if(mrim_net_read() == -1){
+				mrim_connected = 0;
+			}
 		}
 
 		// exit on Ctrl+C
