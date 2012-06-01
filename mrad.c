@@ -62,7 +62,7 @@ signal_handler(int sig)
 			syslog(LOG_WARNING, "Received SIGTERM signal");
 			break;
 		default:
-			syslog(LOG_WARNING, "Unhandled signal (%d) %s", strsignal(sig));
+			syslog(LOG_WARNING, "Unhandled signal (%d) %s", sig, strsignal(sig));
 			break;
 	}
 }
