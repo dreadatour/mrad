@@ -1,5 +1,5 @@
-#ifndef __MRIM_H
-#define __MRIM_H
+#ifndef __SOCKET_H
+#define __SOCKET_H
 
 
 
