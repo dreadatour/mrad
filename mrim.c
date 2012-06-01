@@ -518,14 +518,29 @@ again:
 	return isready;
 }
 
+/******************************************************************************
+	split "host:port" to "host" and "port"
+******************************************************************************/
+static void
+split_host_port(char * login_data, int login_data_size, char * host, int host_size, char * port, int port_size){
+	char * delim_pos= memchr(login_data,':',login_data_size);
+
+	memset(host,0,host_size);
+	memset(port,0,port_size);
+
+	if(delim_pos){
+		*delim_pos='\0';
+		strncpy(host,login_data,host_size-1);
+		strncpy(port,delim_pos+1,port_size-1);
+	}
+}
+
 /*******************************************************************************
 	Connect and login
 *******************************************************************************/
 int
 mrim_connect(char *login_host, char *login_port, char *username, char *password)
 {
-	int i = 0;
-	int j = 0;
 	int login_data_size = -1;
 	char login_data[24];
 	char host[16];
@@ -555,20 +570,8 @@ mrim_connect(char *login_host, char *login_port, char *username, char *password)
 		return -1;
 	}
 
-	for (i = 0; i < login_data_size - 1; i++) {
-		if (login_data[i] == ':') {
-			host[i] = '\0';
-			j = i + 1;
-		} else {
-			if (j == 0) {
-				host[i] = login_data[i];
-			} else {
-				port[i - j] = login_data[i];
-			}
-		}
-	}
-	port[4] = '\0';
 	
+	split_host_port(login_data,login_data_size,host,sizeof(host),port,sizeof(port));
 	syslog(LOG_DEBUG, "Login host: %s", host);
 	syslog(LOG_DEBUG, "Login port: %s", port);
 
