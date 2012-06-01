@@ -1,4 +1,5 @@
 #include "socket.h"
+#include "mrim.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
