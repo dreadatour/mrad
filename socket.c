@@ -1,4 +1,15 @@
 #include "socket.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <syslog.h>
+#include <string.h>
+#include <stdlib.h>
+#include "proto.h"
+
+#define BUF_LEN 65536
 static int input_socket = -1;          // socket to listen input messages on
 static char *input_buf;                // input buffer
 //TODO not used static unsigned int input_len;         // input buffer size

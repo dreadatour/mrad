@@ -1,27 +1,8 @@
 #ifndef __MRIM_H
 #define __MRIM_H
 
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <netdb.h>
-#include <errno.h>
-#include <unistd.h>
-#include <syslog.h>
-#include <string.h>
-#include <assert.h>
-#include <signal.h>
 #include "proto.h"
 
-#define VERSION_TXT "mrad 0.1"
-#define MRA_BUF_LEN     65536
-
-#define LPSLENGTH(s) (*((uint32_t *)(s)))
-#define LPSSIZE(s)   (LPSLENGTH(s) + sizeof(uint32_t))
-#define LPSALLOC(c)  ((char *) malloc((c) + sizeof(uint32_t)))
 
 
 
