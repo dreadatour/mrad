@@ -488,6 +488,7 @@ mrim_net_read()
 
 	// proceed received data while we can do it =)
 	while (mrim_net_read_proceed() == 0);
+	return 0;
 }
 
 /*******************************************************************************
@@ -610,5 +611,6 @@ mrim_disconnect()
 	if (mra_socket > 0) {
 		close(mra_socket);
 	}
+	return 0;
 }
 
