@@ -7,6 +7,7 @@
 #define _MRA_PROTO_H_
 
 #include <sys/types.h>
+#include <stdint.h>
 
 #define PROTO_VERSION_MAJOR     1
 #define PROTO_VERSION_MINOR     8
