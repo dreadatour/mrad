@@ -1,4 +1,6 @@
 #include "mrad.h"
+#include "mrim.h"
+#include "socket.h"
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
