@@ -531,7 +531,7 @@ mrim_connect(char *login_host, char *login_port, char *username, char *password)
 	char host[16];
 	char port[5];
 
-	syslog(LOG_DEBUG, "Start connect to server %s:%s, username: %s, password: %s", login_host, login_port, username, password);
+	syslog(LOG_DEBUG, "Start connect to server %s:%s, username: %s, password: %s", login_host, login_port, "***", "***"); //TODO 
 
 	received_hello_ack = 0;
 	received_login_ack = 0;
