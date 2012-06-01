@@ -23,7 +23,12 @@ mrim_connect_tcp(char *host, char *port)
 		close(s);
 		return -1;
 	}
-	connect(s, res->ai_addr, res->ai_addrlen);
+	if(connect(s, res->ai_addr, res->ai_addrlen) == -1){
+		syslog(LOG_ERR, "cannot connect to %s:%s: %s", host, port, strerror(errno));
+		freeaddrinfo(res);
+		close(s);
+		return -1;
+	}
 	freeaddrinfo(res);
 	return s;
 }
