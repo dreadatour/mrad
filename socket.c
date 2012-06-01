@@ -1,4 +1,7 @@
 #include "socket.h"
+static int input_socket = -1;          // socket to listen input messages on
+static char *input_buf;                // input buffer
+//TODO not used static unsigned int input_len;         // input buffer size
 
 /*******************************************************************************
 	Open TCP socket

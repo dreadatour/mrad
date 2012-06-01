@@ -22,7 +22,5 @@
 
 #define LISTEN_PORT 20202
 
-int mrim_connected = 0;         // mrim is connected to server
-int need_exit = 0;              // we need to exit now
 
 #endif

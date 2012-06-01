@@ -1,5 +1,14 @@
 #include "mrim.h"
 
+int mra_socket = -1;            // mra socket
+char *tx_buf;                   // TX buffer
+unsigned int tx_len;            // TX buffer size
+char *rx_buf;                   // RX buffer
+unsigned int rx_len;            // RX buffer size
+unsigned int seq = 0;           // Sequence number
+int received_hello_ack = 0;     // Is 'hello' message received
+int received_login_ack = 0;     // Is 'login OK' message recievied
+int received_login_rej = 0;     // Is 'login FAIL' message received
 /*******************************************************************************
 	Connect TCP socket
 *******************************************************************************/

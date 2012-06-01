@@ -13,9 +13,6 @@
 
 #define BUF_LEN 65536
 
-int input_socket = -1;          // socket to listen input messages on
-char *input_buf;                // input buffer
-unsigned int input_len;         // input buffer size
 
 int socket_open_tcp(unsigned int);
 int socket_is_readable(int, int);

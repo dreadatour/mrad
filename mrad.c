@@ -1,4 +1,6 @@
 #include "mrad.h"
+static int mrim_connected = 0;         // mrim is connected to server
+static int need_exit = 0;              // we need to exit now
 
 /*******************************************************************************
 	Usage
