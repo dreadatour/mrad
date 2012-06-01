@@ -110,6 +110,7 @@ socket_read()
 
 	msg = strstr(buf, "\n");
 	if (msg) {
+		int err = 0;
 		to_len = msg - buf;
 		to = (char *) malloc(to_len + 1);
 		memcpy(to, buf, to_len);
@@ -119,14 +120,20 @@ socket_read()
 		p = strtok(to, " ,");
 		while (p != NULL) {
 			syslog(LOG_INFO, "send message to '%s': '%s'", p, msg);
-			mrim_send_message(p, msg, 0);
+			err=mrim_send_message(p, msg, 0);
+			if(err == -1){
+				syslog(LOG_ERR, "cannot send message to '%s'", p);
+			}
 			p = strtok (NULL, " ,");
 		}
 
 		free(to);
+		return err;
 	} else {
 		syslog(LOG_ERR, "cannot find 'to' and 'text' here: %s", buf);
+		return -1;
 	}
+	return 0;
 }
 
 /*******************************************************************************
@@ -161,5 +168,6 @@ socket_close()
 	if (input_socket > 0) {
 		close(input_socket);
 	}
+	return 0;
 }
 
