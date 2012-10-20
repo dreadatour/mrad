@@ -110,6 +110,7 @@ main(int argc, char *argv[])
 				break;
 			case 'l':
 				port = atoi(optarg);
+				break;
 			case '?':
 				if (optopt == 'u' || optopt == 'p' || optopt == 'l')
 					syslog(LOG_ERR, "Option -%c requires an argument.\n", optopt);
@@ -177,7 +178,7 @@ main(int argc, char *argv[])
 		close(STDOUT_FILENO);
 		close(STDERR_FILENO);
 	}
-			
+
 	if (socket_open(port) == -1) {
 		syslog(LOG_ERR, "Can't open socket to listen incoming messages on");
 		exit(EXIT_FAILURE);
