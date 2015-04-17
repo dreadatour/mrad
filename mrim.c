@@ -13,12 +13,14 @@
 #include <string.h>
 #include <assert.h>
 #include <signal.h>
-#define VERSION_TXT "mrad 0.1"
-#define MRA_BUF_LEN     65536
 
-#define LPSLENGTH(s) (*((uint32_t *)(s)))
-#define LPSSIZE(s)   (LPSLENGTH(s) + sizeof(uint32_t))
-#define LPSALLOC(c)  ((char *) malloc((c) + sizeof(uint32_t)))
+#define VERSION_TXT             "mrad 0.1"
+#define MRA_BUF_LEN             65536
+#define MRIM_NET_READ_TRY_COUNT 500 // number of attempts to get the full package is selected empirically
+#define LPSLENGTH(s)            (*((uint32_t *)(s)))
+#define LPSSIZE(s)              (LPSLENGTH(s) + sizeof(uint32_t))
+#define LPSALLOC(c)             ((char *) malloc((c) + sizeof(uint32_t)))
+
 int mra_socket = -1;            // mra socket
 char *tx_buf;                   // TX buffer
 unsigned int tx_len;            // TX buffer size
@@ -465,6 +467,8 @@ mrim_net_read()
 {
 	int len;
 	char *buf;
+	int net_read_try_count = 0;
+	int res = 0;
 
 	// increase buffer size
 	rx_buf = realloc(rx_buf, rx_len + MRA_BUF_LEN + 1);
@@ -487,8 +491,20 @@ mrim_net_read()
 	}
 
 	// proceed received data while we can do it =)
-	while (mrim_net_read_proceed() == 0);
-	return 0;
+	while (res == 0) {
+		res = mrim_net_read_proceed();
+
+		if (res == 0) {
+			net_read_try_count++;
+		}
+
+		if (net_read_try_count > MRIM_NET_READ_TRY_COUNT) {
+			break;
+		}
+
+	}
+
+	return 0; 
 }
 
 /*******************************************************************************
